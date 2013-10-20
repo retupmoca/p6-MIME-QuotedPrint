@@ -38,6 +38,10 @@ method encode(Blob $stuff --> Str) {
     return $encoded;
 }
 
+method encode-str(Str $stuff --> Str) {
+    return self.encode($stuff.encode('utf8'));
+}
+
 method decode(Str $stuff --> Buf) {
     my @codes;
 
@@ -63,4 +67,8 @@ method decode(Str $stuff --> Buf) {
     }
 
     return Buf.new(@codes);
+}
+
+method decode-str(Str $stuff --> Str){
+    return self.decode($stuff).decode('utf8');
 }
